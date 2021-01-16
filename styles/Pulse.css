@@ -1,0 +1,9 @@
+.pulse {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border: none;
+    text-align: center;
+}
