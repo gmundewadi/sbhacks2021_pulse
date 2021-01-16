@@ -5,15 +5,15 @@ import "../styles/Pulse.css";
 export default function Pulse(props) {
   return (
     <div className={"pulse"}>
-      <table class="tg">
+      <table className="tg">
         <tbody>
           <tr>
-            <td colspan="2" style={{ fontSize: 32, lineHeight: 2 }}>
+            <td colSpan="2" style={{ fontSize: 32, lineHeight: 2 }}>
               Class Average
             </td>
           </tr>
           <tr>
-            <td colspan="2" style={{ fontSize: 150, lineHeight: 0.7 }}>
+            <td colSpan="2" style={{ fontSize: 150, lineHeight: 0.7 }}>
               78%
             </td>
           </tr>
