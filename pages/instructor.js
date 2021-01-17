@@ -25,7 +25,8 @@ export default class Instructor extends React.Component {
       // graph_datapoints_x: [1610841720585, 1610841721585, 1610841722585, 1610841723585, 1610841725585, 1610841820585],
       // graph_datapoints_y: [98, 95, 20, 30, 60, 65]
       graph_datapoints_x: [],
-      graph_datapoints_y: []
+      graph_datapoints_y: [],
+      collection: 0
     };
   }
 
@@ -75,7 +76,25 @@ export default class Instructor extends React.Component {
     this.setState({ options: newOptions });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    // generate a new room
+
+    // first, generate the random, 7 digit room key
+    const min = 100000;
+    const max = 999999;
+    const roomKey = Math.floor(Math.random() * (max - min + 1) + min);
+
+    await fetch("/api/makeRoom", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // the body of this song is built from state
+      body: JSON.stringify({
+        name: roomKey
+      })
+    });
+
     // Get data from server
     this.getData();
     var interval = setInterval(this.getData, 500);
