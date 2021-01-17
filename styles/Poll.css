@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
+.pollPie > h2 {
+    text-align: center;
+}
+
 .send_poll {
     margin: 100px;
     padding: 10px;
