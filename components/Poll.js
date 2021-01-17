@@ -17,7 +17,7 @@ export default function Poll(props) {
         // the body of this song is built from state
         body: JSON.stringify({
           options: props.options,
-          collection: "ABC123" // HARD-CODED
+          collection: props.collection
         })
       });
     }
