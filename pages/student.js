@@ -34,27 +34,29 @@ export default function Student(props) {
   const [pollOptions, setPollOptions] = useState([]);
   const [selectedOption, selectOption] = useState(-1);
 
-  const { data, mutate } = useSWR(
-    "/api/collection?id=" + localStorage.getItem("roomID"),
-    fetch,
-    {
-      // see example repo for explination about booleans
-      revalidateOnFocus: true,
-      revalidateOnReconnect: true
-    }
-  );
+  if (typeof window !== "undefined") {
+    const { data, mutate } = useSWR(
+      "/api/collection?id=" + localStorage.getItem("roomID"),
+      fetch,
+      {
+        // see example repo for explination about booleans
+        revalidateOnFocus: true,
+        revalidateOnReconnect: true
+      }
+    );
 
-  // does this collection exisit?. If it doesn't, data is false
-  // and the user is kicked out of the room
-  useEffect(() => {
-    if (data && !data.result) {
-      Router.push({
-        pathname: "/"
-      });
-    }
+    // does this collection exisit?. If it doesn't, data is false
+    // and the user is kicked out of the room
+    useEffect(() => {
+      if (data && !data.result) {
+        Router.push({
+          pathname: "/"
+        });
+      }
 
-    // now we want to see if we should update the SDK
-  }, [data]);
+      // now we want to see if we should update the SDK
+    }, [data]);
+  }
 
   useEffect(() => {
     if (typeof window !== "undefined") {
