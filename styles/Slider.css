@@ -7,8 +7,7 @@
 
 .vertical-slider {
   height: 380px;
-  width: 50px;
-  border: 1px solid grey;
+  width: 100px;
 }
 
 .example-thumb {
@@ -17,21 +16,20 @@
   background-color: black;
   color: white;
   cursor: pointer;
-  border: 5px solid gray;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .example-thumb.active {
-  background-color: grey;
+  background-color: black;
 }
 
 .example-track {
   position: relative;
-  background: #ddd;
+  background: green;
 }
 
 .example-track.example-track-1 {
-  background: #f00;
+  background: grey;
 }
 
 .example-track.example-track-2 {
@@ -42,7 +40,7 @@
   position: absolute;
   width: 8px;
   height: 8px;
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   background-color: #fff;
   cursor: pointer;
   border-radius: 50%;
@@ -67,15 +65,15 @@
 }
 
 .vertical-slider .example-thumb {
-  left: 1px;
-  width: 48px;
+  left: 100px;
+  width: 100px;
   line-height: 40px;
-  height: 50px;
+  height: 20px;
 }
 
 .vertical-slider .example-track {
-  left: 20px;
-  width: 10px;
+  width: 100px;
+  left: 100px;
 }
 
 .vertical-slider .example-mark {
