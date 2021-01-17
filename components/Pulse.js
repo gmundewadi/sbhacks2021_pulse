@@ -30,7 +30,6 @@ export default function Pulse(props) {
 
 
 function arrMin(arr, attr) {
-    console.log(arr);
     let m = Number.POSITIVE_INFINITY;
     for (let x of arr)
         if (+x[attr] < m) m = +x[attr];

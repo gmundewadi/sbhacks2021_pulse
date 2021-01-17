@@ -7,7 +7,6 @@ export default function Menu(props) {
     return (
         <div className={'menu'}>
             <div className={'code'}>Code: ABC123</div>
-            <div><i class="fas fa-wave-square"></i></div>
             <ul>
                 {props.menu_items.map((item, index) =>
                     <li key={item} onClick={e => props.goToPage(item)}

@@ -1,4 +1,5 @@
 import React from "react";
+import { fetch } from "../utils/fetch";
 
 import "../styles/App.css";
 
@@ -33,33 +34,34 @@ export default class Instructor extends React.Component {
   }
 
   getData = () => {
-    // TODO: Talk to server, update data
+    // Get data from server
+    fetch("/api/all?id=ABC123", { method: "GET" }).then(d => {
+      this.setState({ data: d.result });
+      let sum = 0, now = new Date();
+      for (let d of this.state.data)
+        sum += +d.pulse;
+      let avg = sum / this.state.data.length;
 
-    let sum = 0, now = new Date();
-    for (let d of this.state.data)
-      sum += +d.pulse;
-    let avg = sum / this.state.data.length;
+      let dpx = this.state.graph_datapoints_x, dpy = this.state.graph_datapoints_y;
+      if (dpx.length > 20) dpx.shift();
+      if (dpy.length > 20) dpy.shift();
 
-    let dpx = this.state.graph_datapoints_x, dpy = this.state.graph_datapoints_y;
-    if (dpx.length > 25) dpx.shift();
-    if (dpy.length > 25) dpy.shift();
+      if (avg != dpy[dpy.length - 1]) {
+        this.setState({
+          graph_datapoints_x: [
+            ...this.state.graph_datapoints_x,
+            now.getTime()
+          ]
+        });
 
-    this.setState({
-      graph_datapoints_x: [
-        ...this.state.graph_datapoints_x,
-        now.getTime()
-      ]
+        this.setState({
+          graph_datapoints_y: [
+            ...this.state.graph_datapoints_y,
+            avg
+          ]
+        });
+      }
     });
-
-    this.setState({
-      graph_datapoints_y: [
-        ...this.state.graph_datapoints_y,
-        avg
-      ]
-    });
-
-    console.log(this.state.graph_datapoints_x);
-    console.log(this.state.graph_datapoints_y);
   }
 
   changeOption = (index, value) => {
@@ -81,7 +83,7 @@ export default class Instructor extends React.Component {
   componentDidMount() {
     // Get data from server
     this.getData();
-    var interval = setInterval(this.getData, 1000);
+    var interval = setInterval(this.getData, 500);
     this.setState({ intervalID: interval });
   }
 

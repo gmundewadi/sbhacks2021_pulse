@@ -10,10 +10,6 @@ function calculateResults(data, len) {
         if (+d.poll_response > -1)
             result[+d.poll_response]++;
 
-    console.log(data);
-    console.log(len);
-    console.log(result);
-
     return result;
 }
 

@@ -9,7 +9,7 @@ import Poll from "../components/student_components/Poll";
 
 import "../styles/App.css";
 
-var guid = CreateGuid();
+var guid = CreateGuid(), username = "";
 
 // generate guid
 if (typeof window !== "undefined") {
@@ -19,9 +19,15 @@ if (typeof window !== "undefined") {
   } else {
     guid = localStorage.getItem("guid");
   }
+
+  // Get username (prompt user for name if not stored)
+  username = localStorage.getItem("username"); 
+  if (username === null || username === "null") {
+    username = prompt("What is your name?");
+    localStorage.setItem("username", username);
+  }
 }
 
-var username = "Joe Gaucho";
 var pollResponse = 0;
 
 export default function Student(props) {
@@ -39,7 +45,7 @@ export default function Student(props) {
       // the body of this song is built from state
       body: JSON.stringify({
         guid: guid,
-        username: username, // HARD-CODED
+        username: username,
         pulse: myPercentage,
         poll_response: pollResponse, // HARD-CODED
         collection: "ABC123" // HARD-CODED
