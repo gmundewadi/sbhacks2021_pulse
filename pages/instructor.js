@@ -1,4 +1,5 @@
 import React from "react";
+import { fetch } from "../utils/fetch";
 
 import "../styles/App.css";
 
@@ -33,6 +34,7 @@ export default class Instructor extends React.Component {
   };
 
   getData = () => {
+<<<<<<< HEAD
     // TODO: Talk to server, update data
 
     let sum = 0,
@@ -56,6 +58,37 @@ export default class Instructor extends React.Component {
     //console.log(this.state.graph_datapoints_x);
     //console.log(this.state.graph_datapoints_y);
   };
+=======
+    // Get data from server
+    fetch("/api/all?id=ABC123", { method: "GET" }).then(d => {
+      this.setState({ data: d.result });
+      let sum = 0, now = new Date();
+      for (let d of this.state.data)
+        sum += +d.pulse;
+      let avg = sum / this.state.data.length;
+
+      let dpx = this.state.graph_datapoints_x, dpy = this.state.graph_datapoints_y;
+      if (dpx.length > 20) dpx.shift();
+      if (dpy.length > 20) dpy.shift();
+
+      if (avg != dpy[dpy.length - 1]) {
+        this.setState({
+          graph_datapoints_x: [
+            ...this.state.graph_datapoints_x,
+            now.getTime()
+          ]
+        });
+
+        this.setState({
+          graph_datapoints_y: [
+            ...this.state.graph_datapoints_y,
+            avg
+          ]
+        });
+      }
+    });
+  }
+>>>>>>> 6805e8bdb51f9c0e8e4ca78d7c755a0a5d97ee8d
 
   changeOption = (index, value) => {
     const newOptions = this.state.options.slice();
@@ -76,7 +109,7 @@ export default class Instructor extends React.Component {
   componentDidMount() {
     // Get data from server
     this.getData();
-    var interval = setInterval(this.getData, 1000);
+    var interval = setInterval(this.getData, 500);
     this.setState({ intervalID: interval });
   }
 

@@ -8,11 +8,15 @@ function calculateResults(data, len) {
 
   for (let d of data) if (+d.poll_response > -1) result[+d.poll_response]++;
 
+<<<<<<< HEAD
   // console.log(data);
   // console.log(len);
   // console.log(result);
 
   return result;
+=======
+    return result;
+>>>>>>> 6805e8bdb51f9c0e8e4ca78d7c755a0a5d97ee8d
 }
 
 function generateColors(len) {

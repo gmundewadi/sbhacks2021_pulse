@@ -32,10 +32,17 @@ export default function Pulse(props) {
 }
 
 function arrMin(arr, attr) {
+<<<<<<< HEAD
   //console.log(arr);
   let m = Number.POSITIVE_INFINITY;
   for (let x of arr) if (+x[attr] < m) m = +x[attr];
   return m;
+=======
+    let m = Number.POSITIVE_INFINITY;
+    for (let x of arr)
+        if (+x[attr] < m) m = +x[attr];
+    return m;
+>>>>>>> 6805e8bdb51f9c0e8e4ca78d7c755a0a5d97ee8d
 }
 
 function arrMax(arr, attr) {
