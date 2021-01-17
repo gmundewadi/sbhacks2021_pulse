@@ -13,7 +13,7 @@ export default class Instructor extends React.Component {
   constructor() {
     super();
     this.state = {
-      menu_items: ["Pulse", "Poll", "Group"],
+      menu_items: ["Pulse", "Poll", "Group", "Close Room"],
       active_page: "Pulse",
       options: ["Option A", "Option B", "Option C", "Option D"],
       data: [
@@ -22,21 +22,31 @@ export default class Instructor extends React.Component {
         { username: "Charlie Chamberlain", pulse: "86", poll_response: "0" },
         { username: "David Davenport", pulse: "91", poll_response: "1" }
       ],
-      // graph_datapoints_x: [1610841720585, 1610841721585, 1610841722585, 1610841723585, 1610841725585, 1610841820585],
-      // graph_datapoints_y: [98, 95, 20, 30, 60, 65]
       graph_datapoints_x: [],
       graph_datapoints_y: [],
       collection: 0
     };
   }
 
-  goToPage = page => {
+  goToPage = async page => {
     this.setState({ active_page: page });
+    if (page == "Close Room") {
+      localStorage.clear("collection"); // clear the collection from the localstorage
+      await fetch("/api/deleteCollection", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          collection: this.state.collection
+        })
+      });
+    }
   };
 
   getData = () => {
     // Get data from server
-    fetch("/api/all?id=ABC123", { method: "GET" }).then(d => {
+    fetch("/api/all?id=" + this.state.collection, { method: "GET" }).then(d => {
       this.setState({ data: d.result });
       let sum = 0,
         now = new Date();
@@ -77,23 +87,29 @@ export default class Instructor extends React.Component {
   };
 
   async componentDidMount() {
-    // generate a new room
-
-    // first, generate the random, 7 digit room key
-    const min = 100000;
-    const max = 999999;
-    const roomKey = Math.floor(Math.random() * (max - min + 1) + min);
-
-    await fetch("/api/makeRoom", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      // the body of this song is built from state
-      body: JSON.stringify({
-        name: roomKey
-      })
-    });
+    var roomKey = 0;
+    if (typeof window !== "undefined") {
+      if (localStorage.getItem("collection") == null) {
+        // generate new room key
+        const min = 100000;
+        const max = 999999;
+        roomKey = Math.floor(Math.random() * (max - min + 1) + min);
+        // generate a new room
+        await fetch("/api/makeRoom", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: roomKey
+          })
+        });
+        localStorage.setItem("collection", roomKey);
+      } else {
+        roomKey = localStorage.getItem("collection");
+      }
+    }
+    this.setState({ collection: roomKey });
 
     // Get data from server
     this.getData();
@@ -112,6 +128,7 @@ export default class Instructor extends React.Component {
           menu_items={this.state.menu_items}
           goToPage={this.goToPage}
           active_page={this.state.active_page}
+          collection={this.state.collection}
         />
         <div className={"main"}>
           {this.state.active_page === "Pulse" && (
