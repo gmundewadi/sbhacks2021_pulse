@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { fetch } from "../utils/fetch";
+
 import Slider from "../components/student_components/Slider";
 import Menu from "../components/Menu";
 import MyPulse from "../components/student_components/MyPulse";
@@ -8,13 +10,35 @@ import Poll from "../components/student_components/Poll";
 import "../styles/App.css";
 
 var guid = CreateGuid();
+var username = "Joe Gaucho";
+var pollResponse = 0;
 
 export default function Student(props) {
   const [menu_items, setMenuItems] = useState(["My Pulse", "Poll"]);
   const [active_page, setActivePage] = useState("My Pulse");
   const [myPulse, setMyPulse] = useState(50);
 
-  console.log("guid:" + guid);
+  useEffect(async () => {
+    console.log("guid: " + guid);
+    console.log("username: " + username);
+    console.log("myPulse: " + myPulse);
+    console.log("poll_response: " + myPulse);
+
+    await fetch("/api/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // the body of this song is built from state
+      body: JSON.stringify({
+        guid: guid,
+        username: username, // HARD-CODED
+        pulse: myPulse,
+        poll_response: pollResponse, // HARD-CODED
+        collection: "ABC123" // HARD-CODED
+      })
+    });
+  }, [myPulse]);
 
   return (
     <div>

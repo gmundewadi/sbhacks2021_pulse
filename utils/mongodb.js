@@ -12,7 +12,7 @@ export async function initDatabase() {
     await client.connect();
     connected = true;
   }
-  return client.db("MusicQs");
+  return client.db("PulseData");
 }
 
 // converts JSON object into BSON
