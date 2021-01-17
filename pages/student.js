@@ -22,7 +22,7 @@ if (typeof window !== "undefined") {
 
   // Get username (prompt user for name if not stored)
   username = localStorage.getItem("username"); 
-  if (username === null || username === "null") {
+  while (username === null || username === "null" || username == "") {
     username = prompt("What is your name?");
     localStorage.setItem("username", username);
   }
