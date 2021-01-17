@@ -36,7 +36,12 @@ export default class Instructor extends React.Component {
   getData = () => {
     // Get data from server
     fetch("/api/all?id=ABC123", { method: "GET" }).then(d => {
-      this.setState({ data: d.result });
+      var result = [];
+      for (let datum of d.result)
+        if (!datum.options)
+          result.push(datum);
+
+      this.setState({ data: result });
       let sum = 0, now = new Date();
       for (let d of this.state.data)
         sum += +d.pulse;
