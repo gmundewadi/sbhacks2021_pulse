@@ -10,6 +10,17 @@ import Poll from "../components/student_components/Poll";
 import "../styles/App.css";
 
 var guid = CreateGuid();
+
+// generate guid
+if (typeof window !== "undefined") {
+  if (localStorage.getItem("guid") == null) {
+    guid = CreateGuid();
+    localStorage.setItem("guid", guid);
+  } else {
+    guid = localStorage.getItem("guid");
+  }
+}
+
 var username = "Joe Gaucho";
 var pollResponse = 0;
 
@@ -17,13 +28,9 @@ export default function Student(props) {
   const [menu_items, setMenuItems] = useState(["My Pulse", "Poll"]);
   const [active_page, setActivePage] = useState("My Pulse");
   const [myPulse, setMyPulse] = useState(50);
+  const [myPercentage, setMyPercentage] = useState(50);
 
   useEffect(async () => {
-    console.log("guid: " + guid);
-    console.log("username: " + username);
-    console.log("myPulse: " + myPulse);
-    console.log("poll_response: " + myPulse);
-
     await fetch("/api/add", {
       method: "POST",
       headers: {
@@ -33,12 +40,12 @@ export default function Student(props) {
       body: JSON.stringify({
         guid: guid,
         username: username, // HARD-CODED
-        pulse: myPulse,
+        pulse: myPercentage,
         poll_response: pollResponse, // HARD-CODED
         collection: "ABC123" // HARD-CODED
       })
     });
-  }, [myPulse]);
+  }, [myPercentage]);
 
   return (
     <div>
@@ -55,7 +62,12 @@ export default function Student(props) {
         </div>
 
         <div className="pulse">
-          {active_page === "My Pulse" && <Slider setPulse={setMyPulse} />}{" "}
+          {active_page === "My Pulse" && (
+            <Slider
+              setPulseOnScreen={setMyPulse}
+              setPulseInDatabase={setMyPercentage}
+            />
+          )}{" "}
         </div>
       </div>
     </div>

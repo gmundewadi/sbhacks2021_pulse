@@ -9,7 +9,8 @@ export default function Slider(props) {
       thumbClassName="example-thumb"
       trackClassName="example-track"
       defaultValue={[50]}
-      onChange={val => props.setPulse(val)}
+      onChange={val => props.setPulseOnScreen(val)}
+      onAfterChange={val => props.setPulseInDatabase(val)}
       orientation="vertical"
       invert
     />
