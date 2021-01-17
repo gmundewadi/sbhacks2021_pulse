@@ -9,7 +9,7 @@ import Poll from "../components/student_components/Poll";
 
 import "../styles/App.css";
 
-var guid = CreateGuid(), username = "";
+var guid = CreateGuid(), username = "", roomID = "";
 
 // generate guid
 if (typeof window !== "undefined") {
@@ -39,6 +39,9 @@ export default function Student(props) {
         username = prompt("What is your name?");
         localStorage.setItem("username", username);
       }
+
+      // Get room ID
+      roomID = localStorage.getItem("roomID");
     }
   }, [])
 
@@ -54,7 +57,7 @@ export default function Student(props) {
         username: username,
         pulse: myPercentage,
         poll_response: selectedOption,
-        collection: "ABC123" // HARD-CODED
+        collection: roomID
       })
     });
   }, [myPercentage, selectedOption]);
@@ -62,7 +65,7 @@ export default function Student(props) {
   useEffect(() => {
     const t = setInterval(() => {
       // Get data from server
-      fetch("/api/all?id=ABC123", { method: "GET" }).then(d => {
+      fetch(`/api/all?id=${roomID}`, { method: "GET" }).then(d => {
         for (let datum of d.result)
           if (datum.options)
             setPollOptions(datum.options);
@@ -79,6 +82,7 @@ export default function Student(props) {
           menu_items={menu_items}
           goToPage={page => setActivePage(page)}
           active_page={active_page}
+          roomID={roomID}
         />
         <div className="main" style={{ marginLeft: 0, padding: 20 }}>
           {active_page === "My Pulse" && <MyPulse pulse={myPulse} />}

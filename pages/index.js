@@ -14,7 +14,7 @@ export default function index() {
         <Link href="/instructor">
           <a>I am an Instructor</a>
         </Link>
-        <Link href="/student" prefetch={false}>
+        <Link href="/studentSetup">
           <a className="tab">I am a Student</a>
         </Link>
       </div>
