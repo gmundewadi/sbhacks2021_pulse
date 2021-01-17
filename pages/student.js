@@ -3,6 +3,7 @@ import { useState } from "react";
 import Slider from "../components/student_components/Slider";
 import Menu from "../components/Menu";
 import MyPulse from "../components/student_components/MyPulse";
+import Poll from "../components/student_components/Poll";
 
 import "../styles/App.css";
 
@@ -24,8 +25,9 @@ export default function Student(props) {
           {active_page === "My Pulse" && <MyPulse pulse={myPulse} />}
           {active_page === "Poll" && <Poll />}
         </div>
+
         <div className="pulse">
-          <Slider setPulse={setMyPulse} />{" "}
+          {active_page === "My Pulse" && <Slider setPulse={setMyPulse} />}{" "}
         </div>
       </div>
     </div>
