@@ -43,7 +43,7 @@ export default function Student(props) {
         // see example repo for explination about booleans
         revalidateOnFocus: true,
         revalidateOnReconnect: true,
-        refreshInterval: 4000
+        refreshInterval: 2500
       }
     );
 
