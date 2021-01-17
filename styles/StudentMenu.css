@@ -1,4 +1,4 @@
-.menu {
+.student_menu {
     height: 150px;
     width: calc(100% - 40px);
     margin: 20px;
@@ -8,7 +8,7 @@
     background: linear-gradient(0deg, rgba(93,169,214,1) 0%, rgba(112,208,201,1) 100%);
 }
 
-.code {
+.student_code {
     height: 70px;
     margin-bottom: 15px;
     display: flex;
@@ -19,7 +19,7 @@
     font-weight: bolder;
 }
 
-.menu > span {
+.student_menu > span {
   margin: 30px;
   color: #000;
   padding: 8px 16px;
@@ -31,16 +31,16 @@
   border-radius: 30px;
 }
 
-.menu > span.active {
+.student_menu > span.active {
   background-color: white;
   color: #6ecbcb;
 }
 
-.menu > span:hover {
+.student_menu > span:hover {
     cursor: pointer;
 }
 
-.menu > span:hover:not(.active) {
+.student_menu > span:hover:not(.active) {
   border: 3px solid white;
   color: white;
 }
