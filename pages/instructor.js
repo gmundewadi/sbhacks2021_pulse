@@ -1,5 +1,6 @@
 import React from "react";
 import { fetch } from "../utils/fetch";
+import Router from "next/router";
 
 import "../styles/App.css";
 
@@ -40,6 +41,9 @@ export default class Instructor extends React.Component {
         body: JSON.stringify({
           collection: this.state.collection
         })
+      });
+      Router.push({
+        pathname: "/"
       });
     }
   };
