@@ -81,7 +81,7 @@ export default class Instructor extends React.Component {
   componentDidMount() {
     // Get data from server
     this.getData();
-    var interval = setInterval(this.getData, 5000);
+    var interval = setInterval(this.getData, 1000);
     this.setState({ intervalID: interval });
   }
 
