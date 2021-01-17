@@ -1,17 +1,22 @@
 .menu {
-    height: 100%;
-    width: 250px;
+    height: calc(100% - 40px);
+    width: 230px;
+    margin: 20px;
     position: fixed;
+    border-radius: 25px;
     background-color: #f1f1f1;
     text-align: center;
+    background: linear-gradient(0deg, rgba(93,169,214,1) 0%, rgba(112,208,201,1) 100%);
 }
 
 .code {
-    height: 100px;
+    height: 200px;
     display: flex;
     align-items:center;
     justify-content:center;
     font-size: 30px;
+    color: white;
+    font-weight: bolder;
 }
 
 .menu > ul {
@@ -20,22 +25,23 @@
   margin: 0;
   padding: 0;
   overflow: auto;
-  border-bottom: 1px solid black;
 }
 
 .menu > ul > li {
-  display: block;
+  margin: 20px;
   color: #000;
   padding: 8px 16px;
   font-size: 22px;
+  font-weight: bold;
+  color: white;
   text-decoration: none;
   padding: 15px;
-  border-top: 1px solid black;
+  border-radius: 30px;
 }
 
 .menu > ul > li.active {
-  background-color: #4CAF50;
-  color: white;
+  background-color: white;
+  color: #6ecbcb;
 }
 
 .menu > ul > li:hover {
@@ -43,6 +49,15 @@
 }
 
 .menu > ul > li:hover:not(.active) {
-  background-color: #555;
+  border: 3px solid white;
   color: white;
+}
+
+.byline {
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  bottom: 30px;
+  width: 230px;
+  text-align: center;
 }

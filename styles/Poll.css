@@ -1,4 +1,89 @@
 .poll {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+}
+
+.pollPie > h2 {
+    text-align: center;
+}
+
+.send_poll {
+    margin: 100px;
+    padding: 10px;
+    font-size: 30px;
+    border: 3px solid white;
+    border-radius: 15px;
+    background-color: #60b0d4;
+    border: none;
+    color: white;
+}
+
+.send_poll:hover {
+    cursor: pointer;
+    background-color: white;
+    border: 3px solid #60b0d4;
+    color: #60b0d4;
+}
+
+.add_option {
+    margin-top: 50px;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 20px;
+    border: 3px solid white;
+    background: none;
+    color: white;
+}
+
+.add_option:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #60b0d4;
+}
+
+.poll_options {
+    width: 100%;
+    text-align: center;
+        color: white;
+    background: linear-gradient(0deg, rgba(93,169,214,1) 0%, rgba(112,208,201,1) 100%);
+    padding: 70px;
+    border-radius: 30px;
+}
+
+.poll_wrapper {
+    margin: 15px;
+    padding: 0 20px;
+    border-radius: 15px;
+    border: 3px solid white;
+    color: white;
+}
+
+.poll_wrapper:hover {
+    background-color: white;
+    color: #67becf;
+}
+
+.poll_wrapper:hover > input {
+    color: #67becf;
+}
+
+.poll_option {
+    width: 80%;
+    margin-right: 10%;
+    padding: 20px;
+    font-size: 24px;
+    display: inline;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.poll_delete {
+    width: 10%;
+    font-size: 25px;
+}
+
+.poll_delete:hover {
+    cursor: pointer;
 }

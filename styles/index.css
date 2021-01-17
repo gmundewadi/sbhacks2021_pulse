@@ -1,0 +1,32 @@
+.index {
+    text-align: center;
+}
+
+header {
+    font-size: 60px;
+    padding: 50px;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+a {
+    padding: 60px 30px;
+    min-width: 300px;
+    font-size: 30px;
+    margin: 30px;
+    text-decoration: none;
+    color: white;
+    border-radius: 25px;
+    background: linear-gradient(0deg, rgba(93,169,214,1) 0%, rgba(112,208,201,1) 100%);
+    border: 3px solid white;
+}
+
+a:hover {
+    background: white;
+    border: 3px solid #60b0d4;
+    color: #60b0d4;
+}

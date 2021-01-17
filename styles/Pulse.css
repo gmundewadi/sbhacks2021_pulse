@@ -1,6 +1,22 @@
 .pulse {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+}
+
+.pulse > * {
+    margin-bottom: 20px;
+}
+
+.pulseline > h2 {
+    text-align: center;
+}
+
+.pulse_table {
+    color: white;
+    background: linear-gradient(0deg, rgba(93,169,214,1) 0%, rgba(112,208,201,1) 100%);
+    padding: 70px;
+    border-radius: 30px;
 }
 
 table {
