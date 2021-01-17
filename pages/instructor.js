@@ -12,71 +12,66 @@ export default class Instructor extends React.Component {
   constructor() {
     super();
     this.state = {
-      menu_items: ['Pulse', 'Poll', 'Group'],
-      active_page: 'Pulse',
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
+      menu_items: ["Pulse", "Poll", "Group"],
+      active_page: "Pulse",
+      options: ["Option A", "Option B", "Option C", "Option D"],
       data: [
-        { username: 'Alice Abbott', pulse: '100', poll_response: '2' },
-        { username: 'Bob Blackmon', pulse: '30', poll_response: '2' },
-        { username: 'Charlie Chamberlain', pulse: '86', poll_response: '0' },
-        { username: 'David Davenport', pulse: '91', poll_response: '1' },
+        { username: "Alice Abbott", pulse: "100", poll_response: "2" },
+        { username: "Bob Blackmon", pulse: "30", poll_response: "2" },
+        { username: "Charlie Chamberlain", pulse: "86", poll_response: "0" },
+        { username: "David Davenport", pulse: "91", poll_response: "1" }
       ],
       // graph_datapoints_x: [1610841720585, 1610841721585, 1610841722585, 1610841723585, 1610841725585, 1610841820585],
       // graph_datapoints_y: [98, 95, 20, 30, 60, 65]
       graph_datapoints_x: [],
       graph_datapoints_y: []
-    }
+    };
   }
 
-  goToPage = (page) => {
+  goToPage = page => {
     this.setState({ active_page: page });
-  }
+  };
 
   getData = () => {
     // TODO: Talk to server, update data
 
-    let sum = 0, now = new Date();
-    for (let d of this.state.data)
-      sum += +d.pulse;
+    let sum = 0,
+      now = new Date();
+    for (let d of this.state.data) sum += +d.pulse;
     let avg = sum / this.state.data.length;
 
-    let dpx = this.state.graph_datapoints_x, dpy = this.state.graph_datapoints_y;
+    let dpx = this.state.graph_datapoints_x,
+      dpy = this.state.graph_datapoints_y;
     if (dpx.length > 25) dpx.shift();
     if (dpy.length > 25) dpy.shift();
 
     this.setState({
-      graph_datapoints_x: [
-        ...this.state.graph_datapoints_x,
-        now.getTime()
-      ]
+      graph_datapoints_x: [...this.state.graph_datapoints_x, now.getTime()]
     });
 
     this.setState({
-      graph_datapoints_y: [
-        ...this.state.graph_datapoints_y,
-        avg
-      ]
+      graph_datapoints_y: [...this.state.graph_datapoints_y, avg]
     });
 
-    console.log(this.state.graph_datapoints_x);
-    console.log(this.state.graph_datapoints_y);
-  }
+    //console.log(this.state.graph_datapoints_x);
+    //console.log(this.state.graph_datapoints_y);
+  };
 
   changeOption = (index, value) => {
     const newOptions = this.state.options.slice();
     newOptions[index] = value;
     this.setState({ options: newOptions });
-  }
+  };
 
   addOption = () => {
-    this.setState({ options: [...this.state.options, 'New Option'] });
-  }
+    this.setState({ options: [...this.state.options, "New Option"] });
+  };
 
-  deleteOption = (index) => {
+  deleteOption = index => {
     const newOptions = this.state.options.slice();
     newOptions.splice(index, 1);
     this.setState({ options: newOptions });
-  }
+  };
 
   componentDidMount() {
     // Get data from server
@@ -92,11 +87,31 @@ export default class Instructor extends React.Component {
   render() {
     return (
       <div className="App">
-        <Menu menu_items={this.state.menu_items} goToPage={this.goToPage} active_page={this.state.active_page} />
-        <div className={'main'}>
-          {this.state.active_page === 'Pulse' && <Pulse data_x={this.state.graph_datapoints_x} data_y={this.state.graph_datapoints_y} data={this.state.data} />}
-          {this.state.active_page === 'Poll' && <Poll options={this.state.options} data={this.state.data} changeOption={this.changeOption} addOption={this.addOption} deleteOption={this.deleteOption} />}
-          {this.state.active_page === 'Group' && <Group data={this.state.data} options={this.state.options} />}
+        <Menu
+          menu_items={this.state.menu_items}
+          goToPage={this.goToPage}
+          active_page={this.state.active_page}
+        />
+        <div className={"main"}>
+          {this.state.active_page === "Pulse" && (
+            <Pulse
+              data_x={this.state.graph_datapoints_x}
+              data_y={this.state.graph_datapoints_y}
+              data={this.state.data}
+            />
+          )}
+          {this.state.active_page === "Poll" && (
+            <Poll
+              options={this.state.options}
+              data={this.state.data}
+              changeOption={this.changeOption}
+              addOption={this.addOption}
+              deleteOption={this.deleteOption}
+            />
+          )}
+          {this.state.active_page === "Group" && (
+            <Group data={this.state.data} options={this.state.options} />
+          )}
         </div>
       </div>
     );
