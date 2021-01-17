@@ -12,8 +12,6 @@ export default function Slider(props) {
       onChange={val => props.setPulse(val)}
       orientation="vertical"
       invert
-      // pearling
-      // minDistance={10}
     />
   );
 }
