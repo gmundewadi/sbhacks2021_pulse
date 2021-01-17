@@ -42,7 +42,8 @@ export default function Student(props) {
       {
         // see example repo for explination about booleans
         revalidateOnFocus: true,
-        revalidateOnReconnect: true
+        revalidateOnReconnect: true,
+        refreshInterval: 4000
       }
     );
 
@@ -54,7 +55,6 @@ export default function Student(props) {
           pathname: "/"
         });
       }
-
       // now we want to see if we should update the SDK
     }, [data]);
   }
@@ -141,4 +141,11 @@ function CreateGuid() {
     return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
   }
   return _p8() + _p8(true) + _p8(true) + _p8();
+}
+
+function sleep(sleepDuration) {
+  var now = new Date().getTime();
+  while (new Date().getTime() < now + sleepDuration) {
+    /* do nothing */
+  }
 }
