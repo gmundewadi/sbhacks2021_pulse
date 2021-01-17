@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { fetch } from "../utils/fetch";
 
 import Slider from "../components/student_components/Slider";
-import Menu from "../components/Menu";
+import StudentMenu from "../components/student_components/StudentMenu";
 import MyPulse from "../components/student_components/MyPulse";
 import Poll from "../components/student_components/Poll";
 
@@ -28,6 +28,8 @@ export default function Student(props) {
   const [active_page, setActivePage] = useState("My Pulse");
   const [myPulse, setMyPulse] = useState(50);
   const [myPercentage, setMyPercentage] = useState(50);
+  const [pollOptions, setPollOptions] = useState([]);
+  const [selectedOption, selectOption] = useState(-1);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -51,24 +53,36 @@ export default function Student(props) {
         guid: guid,
         username: username,
         pulse: myPercentage,
-        poll_response: pollResponse, // HARD-CODED
+        poll_response: selectedOption,
         collection: "ABC123" // HARD-CODED
       })
     });
-  }, [myPercentage]);
+  }, [myPercentage, selectedOption]);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      // Get data from server
+      fetch("/api/all?id=ABC123", { method: "GET" }).then(d => {
+        for (let datum of d.result)
+          if (datum.options)
+            setPollOptions(datum.options);
+      });
+    }, 5000);
+    return () => clearInterval(t);
+  }, [setPollOptions])
 
   return (
     <div>
       {" "}
       <div className="App">
-        <Menu
+        <StudentMenu
           menu_items={menu_items}
           goToPage={page => setActivePage(page)}
           active_page={active_page}
         />
-        <div className="main">
+        <div className="main" style={{ marginLeft: 0, padding: 20 }}>
           {active_page === "My Pulse" && <MyPulse pulse={myPulse} />}
-          {active_page === "Poll" && <Poll />}
+          {active_page === "Poll" && <Poll options={pollOptions} selectOption={selectOption} selectedOption={selectedOption} />}
         </div>
 
         <div className="pulse">

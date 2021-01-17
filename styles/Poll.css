@@ -87,3 +87,8 @@
 .poll_delete:hover {
     cursor: pointer;
 }
+
+.selected_option {
+    background-color: white;
+    color: #60b0d4;
+}

@@ -36,28 +36,38 @@ export default class Instructor extends React.Component {
   getData = () => {
     // Get data from server
     fetch("/api/all?id=ABC123", { method: "GET" }).then(d => {
-      this.setState({ data: d.result });
-      let sum = 0,
-        now = new Date();
-      for (let d of this.state.data) sum += +d.pulse;
+      var result = [];
+      for (let datum of d.result)
+        if (!datum.options)
+          result.push(datum);
+
+      this.setState({ data: result });
+      let sum = 0, now = new Date();
+      for (let d of this.state.data)
+        sum += +d.pulse;
       let avg = sum / this.state.data.length;
 
-      let dpx = this.state.graph_datapoints_x,
-        dpy = this.state.graph_datapoints_y;
+      let dpx = this.state.graph_datapoints_x, dpy = this.state.graph_datapoints_y;
       if (dpx.length > 20) dpx.shift();
       if (dpy.length > 20) dpy.shift();
 
       if (avg != dpy[dpy.length - 1]) {
         this.setState({
-          graph_datapoints_x: [...this.state.graph_datapoints_x, now.getTime()]
+          graph_datapoints_x: [
+            ...this.state.graph_datapoints_x,
+            now.getTime()
+          ]
         });
 
         this.setState({
-          graph_datapoints_y: [...this.state.graph_datapoints_y, avg]
+          graph_datapoints_y: [
+            ...this.state.graph_datapoints_y,
+            avg
+          ]
         });
       }
     });
-  };
+  }
 
   changeOption = (index, value) => {
     const newOptions = this.state.options.slice();
