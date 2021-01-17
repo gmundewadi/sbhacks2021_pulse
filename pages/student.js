@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { fetch } from "../utils/fetch";
+import useSWR from "swr";
+import Router from "next/router";
 
 import Slider from "../components/student_components/Slider";
 import StudentMenu from "../components/student_components/StudentMenu";
@@ -9,7 +11,9 @@ import Poll from "../components/student_components/Poll";
 
 import "../styles/App.css";
 
-var guid = CreateGuid(), username = "", roomID = "";
+var guid = CreateGuid(),
+  username = "",
+  roomID = "";
 
 // generate guid
 if (typeof window !== "undefined") {
@@ -31,6 +35,30 @@ export default function Student(props) {
   const [pollOptions, setPollOptions] = useState([]);
   const [selectedOption, selectOption] = useState(-1);
 
+  if (typeof window !== "undefined") {
+    const { data, mutate } = useSWR(
+      "/api/collection?id=" + localStorage.getItem("roomID"),
+      fetch,
+      {
+        // see example repo for explination about booleans
+        revalidateOnFocus: true,
+        revalidateOnReconnect: true,
+        refreshInterval: 2500
+      }
+    );
+
+    // does this collection exisit?. If it doesn't, data is false
+    // and the user is kicked out of the room
+    useEffect(() => {
+      if (data && !data.result) {
+        Router.push({
+          pathname: "/"
+        });
+      }
+      // now we want to see if we should update the SDK
+    }, [data]);
+  }
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Get username (prompt user for name if not stored)
@@ -43,7 +71,7 @@ export default function Student(props) {
       // Get room ID
       roomID = localStorage.getItem("roomID");
     }
-  }, [])
+  }, []);
 
   useEffect(async () => {
     await fetch("/api/add", {
@@ -67,12 +95,11 @@ export default function Student(props) {
       // Get data from server
       fetch(`/api/all?id=${roomID}`, { method: "GET" }).then(d => {
         for (let datum of d.result)
-          if (datum.options)
-            setPollOptions(datum.options);
+          if (datum.options) setPollOptions(datum.options);
       });
     }, 5000);
     return () => clearInterval(t);
-  }, [setPollOptions])
+  }, [setPollOptions]);
 
   return (
     <div>
@@ -86,7 +113,13 @@ export default function Student(props) {
         />
         <div className="main" style={{ marginLeft: 0, padding: 20 }}>
           {active_page === "My Pulse" && <MyPulse pulse={myPulse} />}
-          {active_page === "Poll" && <Poll options={pollOptions} selectOption={selectOption} selectedOption={selectedOption} />}
+          {active_page === "Poll" && (
+            <Poll
+              options={pollOptions}
+              selectOption={selectOption}
+              selectedOption={selectedOption}
+            />
+          )}
         </div>
 
         <div className="pulse">
@@ -108,4 +141,11 @@ function CreateGuid() {
     return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
   }
   return _p8() + _p8(true) + _p8(true) + _p8();
+}
+
+function sleep(sleepDuration) {
+  var now = new Date().getTime();
+  while (new Date().getTime() < now + sleepDuration) {
+    /* do nothing */
+  }
 }
