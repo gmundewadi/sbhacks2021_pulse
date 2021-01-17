@@ -5,13 +5,14 @@
 }
 
 .group > table {
-    font-size: 40px;
+    font-size: 25px;
     border-collapse: collapse;
 }
 
 .group > table > tr > * {
-  border: 1px solid #ddd;
-  padding: 8px;
+  text-align: center;
+  border: none;
+  padding: 15px;
 }
 
 .group > table > tr:nth-child(even){background-color: #f2f2f2;}
@@ -19,9 +20,10 @@
 .group > table > tr:hover {background-color: #ddd;}
 
 .group > table > tr > th {
+  font-size: 35px;
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
+  text-align: center;
+  background: linear-gradient(0deg, rgba(106,196,205,1) 0%, rgba(112,208,201,1) 100%);
   color: white;
 }

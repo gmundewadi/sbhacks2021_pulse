@@ -7,13 +7,13 @@ export default function Pulse(props) {
 
     return (
         <div className={'pulse'}>
-            <table>
+            <table className={'pulse_table'}>
                 <tbody>
                     <tr>
                         <td colSpan="2" style={{ fontSize: 32, lineHeight: 2 }}>Current Average Pulse</td>
                     </tr>
                     <tr>
-                        <td colSpan="2" style={{ fontSize: 150, lineHeight: 0.7 }}>{props.data_y[props.data_y.length - 1]}%</td>
+                        <td colSpan="2" style={{ fontSize: 150, lineHeight: 0.9 }}>{~~props.data_y[props.data_y.length - 1]}%</td>
                     </tr>
                     <tr style={{ fontSize: 25, lineHeight: 2 }}>
                         <td>Low: {arrMin(props.data, 'pulse')}%</td>

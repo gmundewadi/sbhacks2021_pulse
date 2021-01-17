@@ -16,10 +16,10 @@ export default class Instructor extends React.Component {
       active_page: 'Pulse',
       options: ['Option A', 'Option B', 'Option C', 'Option D'],
       data: [
-        { username: 'Alice', pulse: '100', poll_response: '2' },
-        { username: 'Bob', pulse: '30', poll_response: '2' },
-        { username: 'Charlie', pulse: '86', poll_response: '0' },
-        { username: 'David', pulse: '91', poll_response: '1' },
+        { username: 'Alice Abbott', pulse: '100', poll_response: '2' },
+        { username: 'Bob Blackmon', pulse: '30', poll_response: '2' },
+        { username: 'Charlie Chamberlain', pulse: '86', poll_response: '0' },
+        { username: 'David Davenport', pulse: '91', poll_response: '1' },
       ],
       // graph_datapoints_x: [1610841720585, 1610841721585, 1610841722585, 1610841723585, 1610841725585, 1610841820585],
       // graph_datapoints_y: [98, 95, 20, 30, 60, 65]
@@ -79,14 +79,6 @@ export default class Instructor extends React.Component {
   }
 
   componentDidMount() {
-    // // Load plot script
-    if (typeof window !== undefined) {
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://cdn.plot.ly/plotly-latest.min.js';
-      document.head.appendChild(script);
-    }
-
     // Get data from server
     this.getData();
     var interval = setInterval(this.getData, 5000);
@@ -104,7 +96,7 @@ export default class Instructor extends React.Component {
         <div className={'main'}>
           {this.state.active_page === 'Pulse' && <Pulse data_x={this.state.graph_datapoints_x} data_y={this.state.graph_datapoints_y} data={this.state.data} />}
           {this.state.active_page === 'Poll' && <Poll options={this.state.options} data={this.state.data} changeOption={this.changeOption} addOption={this.addOption} deleteOption={this.deleteOption} />}
-          {this.state.active_page === 'Group' && <Group data={this.state.data} />}
+          {this.state.active_page === 'Group' && <Group data={this.state.data} options={this.state.options} />}
         </div>
       </div>
     );

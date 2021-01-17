@@ -8,15 +8,15 @@ export default function Group(props) {
         <div className={'group'}>
             <table>
                 <tr>
-                    <th>Student</th>
+                    <th style={{ borderTopLeftRadius: 25 }}>Student</th>
                     <th>Pulse</th>
-                    <th>Poll Answer</th>
+                    <th style={{ borderTopRightRadius: 25 }}>Poll Answer</th>
                 </tr>
                 {props.data.map((student, index) =>
                     <tr key={index}>
                         <td>{student.username}</td>
                         <td>{student.pulse}%</td>
-                        <td>{student.poll_response}</td>
+                        <td>{student.poll_response > -1 ? props.options[student.poll_response] : ''}</td>
                     </tr>
                 )}
             </table>
