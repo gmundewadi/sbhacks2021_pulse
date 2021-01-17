@@ -65,15 +65,15 @@
 }
 
 .vertical-slider .example-thumb {
-  left: 100px;
-  width: 100px;
+  left: 50px;
+  width: 200px;
   line-height: 40px;
   height: 20px;
 }
 
 .vertical-slider .example-track {
-  width: 100px;
-  left: 100px;
+  width: 200px;
+  left: 50px;
 }
 
 .vertical-slider .example-mark {

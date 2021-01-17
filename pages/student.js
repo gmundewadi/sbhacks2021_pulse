@@ -20,11 +20,11 @@ export default function Student(props) {
           goToPage={page => setActivePage(page)}
           active_page={active_page}
         />
-        <div className={"main"}>
+        <div className="main">
           {active_page === "My Pulse" && <MyPulse pulse={myPulse} />}
           {active_page === "Poll" && <Poll />}
         </div>
-        <div className={"main"}>
+        <div className="pulse">
           <Slider setPulse={setMyPulse} />{" "}
         </div>
       </div>
