@@ -19,13 +19,6 @@ if (typeof window !== "undefined") {
   } else {
     guid = localStorage.getItem("guid");
   }
-
-  // Get username (prompt user for name if not stored)
-  username = localStorage.getItem("username"); 
-  while (username === null || username === "null" || username == "") {
-    username = prompt("What is your name?");
-    localStorage.setItem("username", username);
-  }
 }
 
 var pollResponse = 0;
@@ -35,6 +28,17 @@ export default function Student(props) {
   const [active_page, setActivePage] = useState("My Pulse");
   const [myPulse, setMyPulse] = useState(50);
   const [myPercentage, setMyPercentage] = useState(50);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Get username (prompt user for name if not stored)
+      username = localStorage.getItem("username");
+      while (username === null || username === "null" || username == "") {
+        username = prompt("What is your name?");
+        localStorage.setItem("username", username);
+      }
+    }
+  }, [])
 
   useEffect(async () => {
     await fetch("/api/add", {
