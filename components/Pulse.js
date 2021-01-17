@@ -23,24 +23,6 @@ export default function Pulse(props) {
             </table>
             <div>
                 <PulseLine data_x={props.data_x} data_y={props.data_y} />
-                {/* {process.browser && <Plot
-                    data={[
-                        {
-                            x: props.data_x,
-                            y: props.data_y,
-                            type: 'scatter',
-                            mode: 'lines+markers',
-                            line: { shape: 'spline' },
-                        }
-                    ]}
-                    layout={{
-                        title: 'Average Pulse Over Time',
-                        y: 0.5,
-                        traceorder: 'reversed',
-                        font: { size: 16 },
-                        yref: 'paper'
-                    }}
-                />} */}
             </div>
         </div>
     );

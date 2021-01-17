@@ -62,6 +62,22 @@ export default class Instructor extends React.Component {
     console.log(this.state.graph_datapoints_y);
   }
 
+  changeOption = (index, value) => {
+    const newOptions = this.state.options.slice();
+    newOptions[index] = value;
+    this.setState({ options: newOptions });
+  }
+
+  addOption = () => {
+    this.setState({ options: [...this.state.options, 'New Option'] });
+  }
+
+  deleteOption = (index) => {
+    const newOptions = this.state.options.slice();
+    newOptions.splice(index, 1);
+    this.setState({ options: newOptions });
+  }
+
   componentDidMount() {
     // // Load plot script
     if (typeof window !== undefined) {
@@ -87,7 +103,7 @@ export default class Instructor extends React.Component {
         <Menu menu_items={this.state.menu_items} goToPage={this.goToPage} active_page={this.state.active_page} />
         <div className={'main'}>
           {this.state.active_page === 'Pulse' && <Pulse data_x={this.state.graph_datapoints_x} data_y={this.state.graph_datapoints_y} data={this.state.data} />}
-          {this.state.active_page === 'Poll' && <Poll />}
+          {this.state.active_page === 'Poll' && <Poll options={this.state.options} data={this.state.data} changeOption={this.changeOption} addOption={this.addOption} deleteOption={this.deleteOption} />}
           {this.state.active_page === 'Group' && <Group data={this.state.data} />}
         </div>
       </div>

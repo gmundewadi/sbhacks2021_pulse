@@ -31,7 +31,7 @@ export default class PulseLine extends React.Component {
         };
 
         return (
-            <div>
+            <div className={'pulseline'}>
                 <h2>Average Pulse over Time</h2>
                 <Line ref="chart"
                     data={data}

@@ -1,4 +1,62 @@
 .poll {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+}
+
+.send_poll {
+    margin: 100px;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.send_poll:hover {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.add_option {
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 20px;
+    border: 1px solid black;
+}
+
+.add_option:hover {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.poll_options {
+    width: 100%;
+    text-align: center;
+}
+
+.poll_wrapper {
+    margin: 15px;
+    padding: 0 20px;
+    border-radius: 15px;
+    border: 1px solid lightgray;
+}
+
+.poll_option {
+    width: 80%;
+    margin-right: 10%;
+    padding: 20px;
+    font-size: 24px;
+    display: inline;
+    border: none;
+}
+
+.poll_delete {
+    width: 10%;
+    font-size: 25px;
+}
+
+.poll_delete:hover {
+    cursor: pointer;
 }
