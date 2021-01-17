@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { fetch } from "../utils/fetch";
 import useSWR from "swr";
+import Router from "next/router";
 
 import Slider from "../components/student_components/Slider";
 import StudentMenu from "../components/student_components/StudentMenu";
