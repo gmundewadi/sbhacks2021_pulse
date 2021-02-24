@@ -14,19 +14,19 @@ We built this using React.js, Next.js, and MongoDB. The repository is hooked up 
 
 <p align="center">
   <br/><br/><span>Professor and student view side-by-side</span><br/>
-  <img alt="Pulse Screenshot 1" src="/screenshots/pulse-screenshot-1.jpg">
+  <img alt="Pulse Screenshot 1" src="https://raw.githubusercontent.com/gmundewadi/sbhacks2021_pulse/main/screenshots/pulse-screenshot-1.png">
   <br/><br/><span>Poll creation</span><br/>
-  <img alt="Pulse Screenshot 2" src="/screenshots/pulse-screenshot-2.jpg">
-  <br/><br/><span>Main professor view with class "pulse" over time</span><br/>
-  <img alt="Pulse Screenshot 3" src="/screenshots/pulse-screenshot-3.jpg">
-  <br/><br/><span>Main student view with pulse bar</span><br/>
-  <img alt="Pulse Screenshot 4" src="/screenshots/pulse-screenshot-4.jpg">
-  <br/><br/><span>Student poll view</span><br/>
-  <img alt="Pulse Screenshot 5" src="/screenshots/pulse-screenshot-5.jpg">
-  <br/><br/><span>Login screen</span><br/>
-  <img alt="Pulse Screenshot 6" src="/screenshots/pulse-screenshot-6.jpg">
+  <img alt="Pulse Screenshot 2" src="https://raw.githubusercontent.com/gmundewadi/sbhacks2021_pulse/main/screenshots/pulse-screenshot-2.png">
   <br/><br/><span>Poll results</span><br/>
-  <img alt="Pulse Screenshot 7" src="/screenshots/pulse-screenshot-7.jpg">
+  <img alt="Pulse Screenshot 7" src="https://raw.githubusercontent.com/gmundewadi/sbhacks2021_pulse/main/screenshots/pulse-screenshot-7.png">
+  <br/><br/><span>Main professor view with class "pulse" over time</span><br/>
+  <img alt="Pulse Screenshot 3" src="https://raw.githubusercontent.com/gmundewadi/sbhacks2021_pulse/main/screenshots/pulse-screenshot-3.png">
+  <br/><br/><span>Main student view with pulse bar</span><br/>
+  <img alt="Pulse Screenshot 4" src="https://raw.githubusercontent.com/gmundewadi/sbhacks2021_pulse/main/screenshots/pulse-screenshot-4.png">
+  <br/><br/><span>Student poll view</span><br/>
+  <img alt="Pulse Screenshot 5" src="https://raw.githubusercontent.com/gmundewadi/sbhacks2021_pulse/main/screenshots/pulse-screenshot-5.png">
+  <br/><br/><span>Login screen</span><br/>
+  <img alt="Pulse Screenshot 6" src="https://raw.githubusercontent.com/gmundewadi/sbhacks2021_pulse/main/screenshots/pulse-screenshot-6.png">
 </p>
 
 <br/>
